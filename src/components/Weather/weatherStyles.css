@@ -1,0 +1,55 @@
+.weather-widget {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 30px;
+  border-radius: 15px;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #001F3F, #0074D9);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.weather-widget h2 {
+  font-size: 1.6em;
+  margin-bottom: 10px;
+  text-shadow: 1px 1px 2px black;
+}
+
+.weather-widget .temperature {
+  font-size: 3em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.weather-widget .description {
+  font-size: 1.2em;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+.weather-widget .details {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+}
+
+.weather-widget .icon {
+  width: 80px;
+  height: 80px;
+}
+
+.weather-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.2;
+  background: url('https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif') no-repeat center center;
+  background-size: cover;
+  z-index: 0;
+}

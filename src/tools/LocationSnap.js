@@ -16,7 +16,7 @@ export default function LocationSnap() {
       async (pos) => {
         const { latitude, longitude } = pos.coords;
 
-        // Mock reverse geocode
+        // Mock reverse geocode (in reality, you'd use Google Maps API or similar)
         const mockAddress = `123 Wash St, Bluffton, SC 29910`;
         setLocation({ lat: latitude, lon: longitude, address: mockAddress });
 
