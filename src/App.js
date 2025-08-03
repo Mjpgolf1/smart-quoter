@@ -1,48 +1,29 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { Routes, Route, Link } from "react-router-dom";
+import SmartQuoter from "./tools/SmartQuoter";
+import MapperTool from "./tools/MapperTool";
 
-export default function LocationSnap() {
-  const [location, setLocation] = useState(null);
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-
-  const handleGetLocation = async () => {
-    if (!navigator.geolocation) {
-      setError("Geolocation not supported.");
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      async (pos) => {
-        const { latitude, longitude } = pos.coords;
-
-        // Mock reverse geocode
-        const mockAddress = `123 Wash St, Bluffton, SC 29910`;
-        setLocation({ lat: latitude, lon: longitude, address: mockAddress });
-
-        localStorage.setItem("detected_address", mockAddress);
-        navigate("/smart-quoter");
-      },
-      () => {
-        setError("Permission denied or error getting location.");
-      }
-    );
-  };
-
+const App = () => {
   return (
-    <div>
-      <h2>📍 Location Snap</h2>
-      <button onClick={handleGetLocation}>Detect My Location</button>
+    <div style={{ fontFamily: "Arial", maxWidth: 800, margin: "auto", padding: 20 }}>
+      <h1>BSW Smart Tools Dashboard</h1>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {location && (
-        <div style={{ marginTop: 20 }}>
-          <p><strong>Address:</strong> {location.address}</p>
-          <p><strong>Latitude:</strong> {location.lat}</p>
-          <p><strong>Longitude:</strong> {location.lon}</p>
-        </div>
-      )}
+      <div style={{ marginBottom: 20 }}>
+        <Link to="/quoter" style={{ marginRight: 10 }}>
+          <button>Smart Quoter</button>
+        </Link>
+        <Link to="/mapper">
+          <button>Driveway / Roof Mapper</button>
+        </Link>
+      </div>
+
+      <Routes>
+        <Route path="/quoter" element={<SmartQuoter />} />
+        <Route path="/mapper" element={<MapperTool />} />
+        <Route path="*" element={<p>Select a tool above to get started.</p>} />
+      </Routes>
     </div>
   );
-}
+};
 
+export default App;
