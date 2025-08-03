@@ -1,21 +1,13 @@
 name: Code Check
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: [push, pull_request]
 
 jobs:
   lint-and-build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 20
 
@@ -23,7 +15,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Run ESLint
-        run: npx eslint . --ext .js,.jsx
+        run: npx eslint .
 
       - name: Build React App
         run: npm run build
